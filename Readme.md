@@ -242,7 +242,7 @@ Batman
 
 With ps in powershell we can see : 
 
-####### MsMpEng  : windows defender agent
+##### MsMpEng  : windows defender agent
 And also :
 ```
 $ whoami /priv
@@ -266,12 +266,12 @@ $ netstat -ano
 ..........
 ```
 
-####### 5958 port is listening and also with information founded before, i understand that batman use WinRm, and with some research i figured out how to use it to have a session as batman.
+##### 5958 port is listening and also with information founded before, i understand that batman use WinRm, and with some research i figured out how to use it to have a session as batman.
 
 PowerShell Remoting is essentially a native Windows remote command execution feature that’s build on top of the Windows Remote Management (WinRM) protocol.  Based on my super Google results, WinRM is supported by Windows Vista with Service Pack 1 or later, Windows 7, Windows Server 2008, and Windows Server 2012.
 
 An interactive PowerShell console can be obtained on a remote system using the “Enter-PsSession” command.  It feels a little like SSH.  Similar to “Invoke-Command”, “Enter-PsSession” can be run as the current user or using alternative credentials from a non domain system.  Examples below.
-#######  Examples of having session with powershell
+#####  Examples of having session with powershell
 ```
 Enter-PsSession –ComputerName '10.10.10.130' 
 Enter-PsSession –ComputerName servername –Credentials domain\serveradmin
@@ -292,8 +292,8 @@ Batman have access to 'C:\tomcat\apache-tomcat-8.5.37\bin\'   so i use nc.exe fr
 ![second_session](https://github.com/roughiz/Arkham-walktrough/blob/master/batmannewsession.png)
 Now we have an other shell, but i can't read the flag in administrator directory, due to UAC restriction, so here we have two solutions:
 
-####### 1) Bypass UAC with a script ... but this version of windows is new and all uac bypass scripts founded dosen't work.
-####### 2) use samba share to have all access  to C: like :
+##### 1) Bypass UAC with a script ... but this version of windows is new and all uac bypass scripts founded dosen't work.
+##### 2) use samba share to have all access  to C: like :
 
 ```
 $ pushd \\arkham\C$
