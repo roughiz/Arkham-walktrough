@@ -177,6 +177,7 @@ To encode special caracters to url format :
 ```
 $  echo $(python viewstate.py -a encrypt )  | sed -f /usr/lib/ddns/url_escape.sed
 ```
+Find the url_escape.sed file here [url_escape.sed](https://github.com/roughiz/Arkham-walktrough/blob/master/url_escape.sed)
 ![ping](https://github.com/roughiz/Arkham-walktrough/blob/master/ping.png)
 
 I used curl to post the viewstate payload manually.
