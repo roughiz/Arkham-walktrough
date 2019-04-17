@@ -157,8 +157,9 @@ data decrypted: '\xac\xed\x00\x05ur\x00\x13[Ljava.lang.Object;\x90\xceX\x9f\x10s
 ```
 
 It works great, so let's create a payload now.
-For that i use a famous tool, which generate payloads for Java object deserialization, ysoserial [ysoserial](https://github.com/frohoff/ysoserial)
-I found a fork of this tool, more simple to add commands for (bash, cmd , powershell) [modified ysoserial](https://github.com/pimps/ysoserial-modified)
+For that i use a famous tool, which generate payloads for Java object deserialization, [ysoserial](https://github.com/frohoff/ysoserial)
+
+I found a fork from this tool, more simple to add commands for (bash, cmd , powershell) [modified ysoserial](https://github.com/pimps/ysoserial-modified)
 
 We can use many payloads types, and at the first i used Myfaces1 and Myfaces2 but they dosen't work, i had this error: 
 
