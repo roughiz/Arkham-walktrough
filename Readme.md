@@ -1,5 +1,5 @@
 ## Enumeration
-I use masscan and nmap for a quick scan, here i use a script which create a keepnote page report from the scan, found it here ![](https://github.com/roughiz/EnumNeTKeepNoteReportCreator/blob/master/keepNoteScanNetReportCreator.sh).
+I use masscan and nmap for a quick scan, here i use a script which create a keepnote page report from the scan, found it here [script](https://github.com/roughiz/EnumNeTKeepNoteReportCreator/blob/master/keepNoteScanNetReportCreator.sh).
  
 In my first enumeration we can see, ftp and smb share, also http  (80,8080) ports :
 ```
@@ -110,8 +110,10 @@ https://myfaces.apache.org/core20/myfaces-impl/webconfig.html#org_apache_myfaces
 https://myfaces.apache.org/core20/myfaces-impl-shared/xref/org/apache/myfaces/shared/util/StateUtils.html
 
 DES is the default encryption algo, with ECB mode and PAD_PKCS5 as padding.
-Mac algo is HMAC SHA1( 20 bytes length)
+Mac algo is HMAC SHA1( 20 bytes length).
+
 ![doc]()
+
 With all theses informations i write a  python viestate algo of encryption and decryption.
 
 SHA1 HMAC hash is always 160 bits (e.g. 20 bytes)
@@ -155,8 +157,8 @@ data decrypted: '\xac\xed\x00\x05ur\x00\x13[Ljava.lang.Object;\x90\xceX\x9f\x10s
 ```
 
 It works great, so let's create a payload now.
-For that i use a famous tool, which generate payloads for Java object deserialization, ysoserial ![ysoserial](https://github.com/frohoff/ysoserial)
-I found a fork of this tool, more simple to add commands for (bash, cmd , powershell) ![modified ysoserial](https://github.com/pimps/ysoserial-modified)
+For that i use a famous tool, which generate payloads for Java object deserialization, ysoserial [ysoserial](https://github.com/frohoff/ysoserial)
+I found a fork of this tool, more simple to add commands for (bash, cmd , powershell) [modified ysoserial](https://github.com/pimps/ysoserial-modified)
 
 We can use many payloads types, and at the first i used Myfaces1 and Myfaces2 but they dosen't work, i had this error: 
 
@@ -175,6 +177,7 @@ To encode special caracters to url format :
 $  echo $(python viewstate.py -a encrypt )  | sed -f /usr/lib/ddns/url_escape.sed
 ```
 ![ping]()
+
 I used curl to post the viewstate payload manually.
 The idea here is to find the way to uplaod nc.exe and execute it. we have to know if the box has powershell or python etc ..
 When i tried many things i noticed that when the command is executed we have a 500 error with :
