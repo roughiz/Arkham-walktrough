@@ -146,9 +146,9 @@ key="JsF9876-"
 #####  Nota :
 
 Serialized object has the followig patterns :
-####### "'\xac\xed\x00\x05" in Hexa 
+##### "'\xac\xed\x00\x05" in Hexa 
 or 
-####### "r00" in Base64
+##### "r00" in Base64
 
 And with our viewstate python decrypt function we have the good head pattern :
 ```
@@ -163,7 +163,7 @@ I found a fork from this tool, more simple to add commands for (bash, cmd , powe
 
 We can use many payloads types, and at the first i used Myfaces1 and Myfaces2 but they dosen't work, i had this error: 
 
-####### javax.faces.application.ViewExpiredException: viewId:/userSubscribe.faces - No saved view state could be found for the view identifier: /userSubscribe.faces
+##### javax.faces.application.ViewExpiredException: viewId:/userSubscribe.faces - No saved view state could be found for the view identifier: /userSubscribe.faces
 And i spent many many times but dosen't work, until i tried other payload and finally "CommonsCollections5" works great and i could ping my self.
 
 First listen for icmp :
@@ -182,14 +182,14 @@ $  echo $(python viewstate.py -a encrypt )  | sed -f /usr/lib/ddns/url_escape.se
 I used curl to post the viewstate payload manually.
 The idea here is to find the way to uplaod nc.exe and execute it. we have to know if the box has powershell or python etc ..
 When i tried many things i noticed that when the command is executed we have a 500 error with :
-####### "cannot be cast to class [Ljava.lang.Object; (javax.management.BadAttributeValueExpException".
+##### "cannot be cast to class [Ljava.lang.Object; (javax.management.BadAttributeValueExpException".
 
 If command dosen't work or payload dosent work we have an 500 error : 
-####### "javax.faces.application.ViewExpiredException: viewId:&#47;userSubscribe.faces - No saved view state could be found for the view identifier: &#47;userSubscribe.faces"
+##### "javax.faces.application.ViewExpiredException: viewId:&#47;userSubscribe.faces - No saved view state could be found for the view identifier: &#47;userSubscribe.faces"
 
 That was very important so i could guess if the contains per example (python, powershell ...) 
 
-####### Note : we can also add && ping to our command to be sur it was well executed
+### Note : we can also add && ping to our command to be sur it was well executed
 
 ## Final exploit for user shell :
 
