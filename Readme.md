@@ -1,5 +1,5 @@
 ## Enumeration
-I use masscan and nmap for a quick scan, here i use a script which create a keepnote page report from the scan, found it [here](https://github.com/roughiz/EnumNeTKeepNoteReportCreator/blob/master/keepNoteScanNetReportCreator.sh).
+I use masscan and nmap for a quick scan, here i use a script which create a keepnote page report from the scan, found it [here](https://github.com/roughiz/scautofire/blob/master/keepNoteScanNetReportCreator.sh).
  
 In my first enumeration we can see, ftp and smb share, also http  (80,8080) ports :
 ```
